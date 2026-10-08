@@ -85,6 +85,7 @@ export function RealityPanel({ sim, onReport }: { sim: Sim; onReport: () => void
 export function ReportModal({ sim, open, onClose }: { sim: Sim; open: boolean; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null)
   const [url, setUrl] = useState<string | null>(null)
+  const [zoom, setZoom] = useState<number | 'actual'>(1) // 1 = fit to dialog width
   const name = `case-report-${sim.caseNo}`
 
   useEffect(() => {
@@ -95,6 +96,7 @@ export function ReportModal({ sim, open, onClose }: { sim: Sim; open: boolean; o
     if (!open) return
     let live = true
     setUrl(null)
+    setZoom(1)
     renderReport(sim).then((c) => live && setUrl(c.toDataURL('image/png')))
     return () => { live = false }
   }, [open, sim])
@@ -121,8 +123,24 @@ export function ReportModal({ sim, open, onClose }: { sim: Sim; open: boolean; o
     <dialog ref={ref} onClose={onClose} onClick={(e) => e.target === ref.current && onClose()} className="m-auto max-h-[94vh] w-[min(96vw,60rem)] bg-transparent p-0 backdrop:bg-ink/60">
       <div className="win">
         <div className="win-title"><span>Case report — {sim.caseNo}</span><span aria-hidden>▪</span></div>
-        <div className="max-h-[68vh] overflow-auto p-3">
-          {url ? <img src={url} alt={`Thought spiral for case ${sim.caseNo}: ${sim.nodes.length} nodes`} className="mx-auto h-auto max-w-full border-2 border-ink" /> : <p className="p-8 text-center cursor">Typing up the report</p>}
+        <div className="flex flex-wrap items-center gap-1 border-b-2 border-ink p-2" role="group" aria-label="Report zoom">
+          <button className="btn !px-3" aria-label="Zoom out" disabled={!url || zoom === 'actual' || zoom <= 1} onClick={() => setZoom((z) => Math.max(1, (z as number) - 0.5))}>−</button>
+          <button className="btn !px-3" aria-label="Zoom in" disabled={!url || (zoom !== 'actual' && zoom >= 6)} onClick={() => setZoom((z) => (z === 'actual' ? 'actual' : Math.min(6, z + 0.5)))}>+</button>
+          <button className="btn" disabled={!url} aria-pressed={zoom === 1} onClick={() => setZoom(1)}>Fit</button>
+          <button className="btn" disabled={!url} aria-pressed={zoom === 'actual'} onClick={() => setZoom('actual')}>Actual size</button>
+          <span className="ml-1 text-[11px] text-grey">{zoom === 'actual' ? 'Full resolution' : `${Math.round(zoom * 100)}%`} · scroll to pan</span>
+        </div>
+        <div className="max-h-[60vh] overflow-auto p-3">
+          {url ? (
+            <img
+              src={url}
+              alt={`Thought spiral for case ${sim.caseNo}: ${sim.nodes.length} nodes`}
+              style={zoom === 'actual' ? { maxWidth: 'none' } : { width: `${zoom * 100}%`, maxWidth: 'none' }}
+              className="h-auto border-2 border-ink"
+            />
+          ) : (
+            <p className="p-8 text-center cursor">Typing up the report</p>
+          )}
         </div>
         <div className="flex flex-wrap gap-2 border-t-2 border-ink p-3">
           <button className="btn btn-red" disabled={!url} onClick={() => url && save(url, `${name}.png`)}>Download image (PNG)</button>
