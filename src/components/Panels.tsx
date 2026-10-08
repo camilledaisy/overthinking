@@ -69,35 +69,51 @@ const FILTERS: (Evidence | 'all')[] = ['all', 'none', 'circumstantial', 'support
 function EvidencePanel({ sim, onFocus }: { sim: Sim; onFocus: (id: string) => void }) {
   const [f, setF] = useState<Evidence | 'all'>('all')
   const s = stats(sim)
-  const rows = sim.nodes.filter((n) => f === 'all' || n.evidence === f)
+  const total = sim.nodes.length
+  const rows = sim.nodes.filter((n) => n.parent && (f === 'all' || n.evidence === f))
   const verdict =
     s.unsupported === 0 ? 'The evidence department has nothing to report, which it enjoys.'
-    : s.supported / sim.nodes.length > 0.3 ? 'Evidence is thin but present. The Department is cautiously bored.'
+    : s.supported / total > 0.3 ? 'Evidence is thin but present. The Department is cautiously bored.'
     : 'The evidence department has declined to comment.'
+  const seg = (n: number, cls: string) => n > 0 && <i className={`h-full ${cls}`} style={{ width: `${(n / total) * 100}%` }} />
   return (
     <div className="p-3">
-      <p className="text-[12px]"><b>{s.supported}</b> supported · <b>{s.circumstantial}</b> circumstantial · <b className="text-warn">{s.unsupported}</b> unsupported</p>
-      <p className="mt-1 text-[12px] text-grey">{verdict}</p>
-      <div className="mt-2 flex flex-wrap gap-1" role="group" aria-label="Filter evidence">
+      <p className="text-[12px]">{verdict}</p>
+      <div className="mt-2 flex h-3 border-2 border-ink" aria-hidden>
+        {seg(s.supported, 'bg-ink')}
+        {seg(s.circumstantial, 'bg-grey')}
+        {seg(s.unsupported, 'bg-warn')}
+      </div>
+      <p className="mt-1 text-[11px] text-grey">
+        <b className="text-ink">{s.supported}</b> happened · <b className="text-ink">{s.circumstantial}</b> plausible · <b className="text-warn">{s.unsupported}</b> made up
+      </p>
+      <div className="mt-3 flex flex-wrap gap-1" role="group" aria-label="Filter evidence">
         {FILTERS.map((x) => (
           <button key={x} className="btn !min-h-7 !px-2 !py-0 !text-[10px]" aria-pressed={f === x} onClick={() => setF(x)}>
             {x === 'all' ? 'All' : EV_LABEL[x]}
           </button>
         ))}
       </div>
-      <ul className="mt-3 space-y-2">
-        {rows.map((n) => (
-          <li key={n.id}>
-            <button className={`inset block w-full p-2 text-left text-[12px] ${n.id === sim.selected ? 'outline-2 outline-ink' : ''}`} onClick={() => onFocus(n.id)}>
-              <span className="flex items-center justify-between gap-2 text-[10px] tracking-wider uppercase">
-                <span>EX-{n.id.slice(1).padStart(2, '0')} · {n.kind}</span>
-                <span className={n.evidence === 'none' ? 'font-bold text-warn' : 'font-bold'}>{EV_LABEL[n.evidence]}</span>
-              </span>
-              <span className="mt-1 line-clamp-2 block">{n.text}</span>
-              <span className="mt-1 block text-grey">{n.evNote}</span>
-            </button>
-          </li>
-        ))}
+      <ul className="mt-2 divide-y divide-grey/40 border-y border-grey/40">
+        {rows.length === 0 && <li className="py-2 text-[12px] text-grey">Nothing filed here yet. Click a thought on the map first.</li>}
+        {rows.map((n) => {
+          const open = n.id === sim.selected
+          return (
+            <li key={n.id}>
+              <button className={`block w-full px-1 py-1.5 text-left text-[12px] ${open ? 'bg-paper-2' : 'hover:bg-paper-2'}`} aria-expanded={open} onClick={() => onFocus(n.id)}>
+                <span className="flex items-center gap-2">
+                  <span className={`h-2.5 w-2.5 shrink-0 border border-ink ${n.evidence === 'none' ? 'bg-warn' : n.evidence === 'circumstantial' ? 'bg-grey' : 'bg-ink'}`} aria-hidden />
+                  <span className={open ? 'font-bold' : 'truncate'}>{n.text}</span>
+                </span>
+                {open && (
+                  <span className="mt-1 block pl-[18px] text-grey">
+                    <b className="text-ink">{EV_LABEL[n.evidence]}.</b> {n.evNote}
+                  </span>
+                )}
+              </button>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
