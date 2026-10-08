@@ -90,6 +90,8 @@ function makeChild(sim: Sim, parent: TNode, kind: Kind, seed: Seed | undefined, 
   const n = minutes(sim)
   const used = new Set(sim.nodes.map((x) => x.text))
   let text = seed?.t
+  const rung = scenarioById(sim.scenarioId)?.deep[depth - 3]?.[KINDS.indexOf(kind)]
+  if (!text && rung && !used.has(rung)) text = rung
   if (!text) {
     const own = tierFor(depth)
     const order = [0, 1, 2, 3].sort((a, b) => Math.abs(a - own) - Math.abs(b - own) || a - b)

@@ -45,6 +45,28 @@ export const SCENARIOS: Scenario[] = [
         ],
       },
     ],
+    deep: [
+          [
+                "Graham is not unfriendly. He has, however, never been known to initiate a wave, which makes the absence of a reply technically consistent.",
+                "Perhaps waves are a currency, and you have been issuing them without a reserve.",
+                "Waves in the second-floor corridor are logged, and the log shows an imbalance: 14 outgoing, 3 returned."
+          ],
+          [
+                "You wave at a lot of people. It is possible this rate makes any single wave easy to miss.",
+                "If your waves are discounted by volume, you are the person who waves too much, which nobody has told you, because people do not say.",
+                "A reputation for excessive waving has formed on the second floor, and a nickname is being workshopped."
+          ],
+          [
+                "It is worth asking whether you are a person who waves, or someone who has simply always been doing it.",
+                "If the waving is a habit and not a choice, the friendliness it communicates may be fabricated, mostly by you, mostly in advance.",
+                "You have been performing warmth on a schedule since 2016, and the audience has noticed the schedule."
+          ],
+          [
+                "None of this changes what Graham was carrying: a laptop, a lanyard, a sandwich.",
+                "A person who cannot tell whether their warmth is real may be better suited to a role with fewer corridors.",
+                "You are now researching a career as a lighthouse keeper, where waving is done only at ships, which never wave back, and which nobody expects to."
+          ]
+    ],
     esc: [
       'Procurement has opened a formal enquiry into the wave. It has been assigned to Graham, who is conflicted, and also unavailable until the sandwich is finished.',
       'A tribunal of three lanyards convenes in the second-floor corridor. The wave is entered into the minutes as "an act of friendly intent, contested".',
@@ -91,6 +113,28 @@ export const SCENARIOS: Scenario[] = [
           { t: 'A committee of phones met in a bag and voted 3 to 1 against Saturday. The dissenting phone was yours, which is irrelevant, because it was not in the room.' },
         ],
       },
+    ],
+    deep: [
+          [
+                "You have sent Dani plans-related questions before, and a gap of forty minutes is not unusual for them.",
+                "Your messages may read as needy in a way that is small but accumulates, like lint.",
+                "Dani keeps a mental tally of how often you ask whether things are still on, and the tally has a ceiling."
+          ],
+          [
+                "Asking whether plans are still on is normal. It is, in fact, the purpose of the question.",
+                "You ask because you assume plans are always about to fall through, which means you have been expecting to be cancelled on since roughly adolescence.",
+                "You have a long-standing arrangement with disappointment, under which it is notified first, in case."
+          ],
+          [
+                "Most people, asked, would call you a reliable friend. They would then ask why you want to know.",
+                "If you cannot trust a plan until it is confirmed twice, perhaps you do not trust plans, or Saturdays, or the week as a concept.",
+                "The week has been put on notice. Wednesday has asked to be left out of this."
+          ],
+          [
+                "Dani will reply. Dani probably already has, and it is sitting in a notification you have not seen because you were looking at the timestamp.",
+                "You consider simply not making plans, which would solve the plans problem and several adjacent ones.",
+                "You are now looking into becoming a ship’s cook on a long-haul vessel, where Saturdays are not observed and nobody has ever asked if anything is still on."
+          ]
     ],
     esc: [
       'The messaging platform has been asked to release the exact millisecond at which Dani read the message. It has politely declined and offered a new set of stickers.',
@@ -139,6 +183,28 @@ export const SCENARIOS: Scenario[] = [
         ],
       },
     ],
+    deep: [
+          [
+                "In the last six months Helen has booked you for three quick chats. Two were about holiday forms and one was about a stapler.",
+                "The stapler chat may have been the beginning of a record.",
+                "The stapler is now referred to, in a document you cannot see, as the first incident."
+          ],
+          [
+                "A manager who wanted to dismiss you would, in all likelihood, include someone from HR and use a larger room.",
+                "You have started composing your reply, a statement of gratitude for the experience, in case.",
+                "Your farewell speech is eleven minutes long, has a middle section in verse, and mentions Meeting Room 3 by name."
+          ],
+          [
+                "It is 09:15 tomorrow. You are, currently, in a thought about the day after that.",
+                "If you are let go you will have to explain it to people, and you have not agreed a version, and the true one is: I was invited to a quick chat.",
+                "In every version of the explanation you are more dignified than the actual event, and also on a horse."
+          ],
+          [
+                "The meeting is fifteen minutes long. The thoughts about it have exceeded that by a considerable margin.",
+                "You have mentally relocated to a smaller city with lower rent and no calendar invitations, only the occasional knock.",
+                "You are now in early talks to become a harbour master in a port of 900 people, where the only meeting is the tide."
+          ]
+    ],
     esc: [
       'Helen’s manager has been added to the invite. His name is now in the attendee list and in your ribcage.',
       'The Quick chat is rescheduled to Thursday, then to TBC, then to a recurring series titled "Quick chat (ongoing)", which no one will ever be able to delete.',
@@ -186,6 +252,28 @@ export const SCENARIOS: Scenario[] = [
         ],
       },
     ],
+    deep: [
+          [
+                "The machine says this to everyone. It said it to the man ahead of you, who had one banana.",
+                "Perhaps it says it to everyone, but with different degrees of conviction, and yours was firm.",
+                "The voice has a tone it reserves for suspects. The Institute has reviewed the audio and cannot rule out the tone."
+          ],
+          [
+                "You paid, took your bag and left. In every material way the system found you innocent.",
+                "A system that says unexpected is a system that has expectations, and you have now learned you did not meet them, on fruit.",
+                "You are on a list of people who bag unexpectedly. The list has a heading. The heading is your name."
+          ],
+          [
+                "The satsumas are fine. They are being eaten at this moment by a version of you that is not worried.",
+                "If a machine can find you unexpected, there is a case that you are generally unexpected, in a way you had been counting as personality.",
+                "Your personality is now thought to be a set of behaviours a weighing platform can contradict."
+          ],
+          [
+                "It was a scale. It was eight grams. The scale did not know your name.",
+                "You begin to wonder whether a place with fewer sensors might suit you.",
+                "You are enquiring about a post on a remote island sheep farm, where the only thing weighed is sheep, and sheep, by definition, are expected."
+          ]
+    ],
     esc: [
       'The assistant arrives, looks at the satsumas, looks at you, and says "All fine" in a tone that suggests otherwise and a form to be filed.',
       'Every self-checkout in the building begins announcing "Unexpected item in the bagging area" at slightly different speeds, like a choir that has not rehearsed.',
@@ -232,6 +320,28 @@ export const SCENARIOS: Scenario[] = [
           { t: 'Moira has opened a ledger. It lists one casserole dish, one reproachful kindness, and a column headed Interest.' },
         ],
       },
+    ],
+    deep: [
+          [
+                "Moira has said much the same thing before, in a similar tone, with no apparent consequence.",
+                "The phrase may be a kind of audit, and the only passing reply was not “It was no problem” but something with more warmth.",
+                "A warmer reply exists, and was available, and is stored somewhere you cannot reach, in the voice of someone braver."
+          ],
+          [
+                "“It was no problem” is a perfectly good reply. It is the reply of a person who has finished with a dish.",
+                "You are, you realise, a person who answers warm questions with efficient sentences, and this may be how you have been perceived all along.",
+                "You have been filed under brisk in at least four households, and one of them has a plaque."
+          ],
+          [
+                "Most neighbours think of each other, briefly, around bins.",
+                "If you are brisk by nature, then your kindness comes with a form to fill in, and Moira has seen the form.",
+                "Your kindness has paperwork. Moira keeps a copy in a drawer, labelled Dish, Washed."
+          ],
+          [
+                "It was a casserole dish. It has been put in a cupboard.",
+                "You are starting to think you should live somewhere nobody lends anything, for everyone’s sake.",
+                "You are looking at a monastery with a vow of silence, where dishes are returned unwashed, nobody says you didn’t have to, and the soup is not discussed."
+          ]
     ],
     esc: [
       'Moira mentions the dish to another neighbour, as an anecdote. It is warm, accurate and slightly too long, and it is now street property.',

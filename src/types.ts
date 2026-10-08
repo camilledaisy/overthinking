@@ -23,6 +23,8 @@ export interface Scenario {
   grounded: string
   vars: Vars
   kids: [Seed, Seed, Seed]
+  /** The spiral: one [reasonable, speculative, absurd] line for each of depths 3-6. */
+  deep: [string, string, string][]
   esc: string[]
 }
 
